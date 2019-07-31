@@ -1,0 +1,43 @@
+//  Escribir un pseudocódigo que lea 3 números los cuales significan una fecha (día, mes, año). Comprobar que sea válida la fecha, si no es valido que imprima un mensaje de error; imprima(día, mes, año).
+
+Proceso fecha
+	dia<-0;
+	mes<-0;
+	ano<-0;
+	
+	Escribir "Ingrese numero para dia";
+	Leer n;
+	         Si n>31 Entonces
+		       Escribir " error numero ingresado no permitido";
+	          Sino
+		      Escribir " numero permitido asignasdo a dia ";
+			  dia<-n;
+			  Escribir " dia ",dia;
+			 FinSi
+	   
+	Escribir "Ingrese numero para mes";
+	Leer n;
+	      Si n>12 Entonces
+		   Escribir " error numero ingresado no permitido";
+	     Sino
+		   Escribir " numero permitido asignasdo a mes "; 
+		   mes<-n;
+		   Escribir " mes ",mes;
+		   
+		 FinSi
+		 
+		 
+	Escribir "Ingrese numero para ano";
+	Leer n;
+	      Si n<0 Entonces
+		   Escribir " error numero ingresado no permitido";
+	     Sino
+		   Escribir " numero permitido asignasdo a ano "; 
+		   ano<-n;
+		   Escribir " ano ",ano;
+		   
+		   Escribir " -dia ",dia," -mes ",mes," -ano ",ano;
+		 FinSi
+		 
+	
+FinProceso

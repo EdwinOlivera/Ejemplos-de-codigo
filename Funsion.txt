@@ -1,0 +1,12 @@
+Algoritmo Funsion
+	Escribir "Ingrese el nuemo para evaluar la funsion"
+	Leer F
+	
+	Si F<0 Entonces
+		Calculo <- (F*F*F) + 1
+	SiNo
+		Calculo <- F
+	Fin Si
+	
+	Escribir "La Funsion evaluada en F(x) tiene como imagen: ", Calculo
+FinAlgoritmo
