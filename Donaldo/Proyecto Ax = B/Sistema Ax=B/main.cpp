@@ -19,9 +19,7 @@ void CrearMatrizIdentidad(float matrizOriginal[][100], float matrizBOriginal[], 
 int main()
 {
     srand(time(NULL));
-    int dimensionN = 4 ;
-
-    int Aleatorio = -1;
+    int dimensionN = 4;
 
     cout<<"Se va a intentar calcular el sistme Ax = B. Para eso debe ingresar los datos de A y B"<<endl;
     do
@@ -38,51 +36,22 @@ int main()
 
     // El siguiente DO{}WHILE() da la opcion de crear automaticamente la MATRIZ A y el VECTOR B de una dimension n
     // aleatoriamente. Se puede ingresar el valor uno por uno si se escoge la opcion 0 ( cero ).
-    do
-    {
-        cout<<"\nDesea crear la matriz A y la matriz Columna B de forma Aleatoria y Automatica? : \n1 = SI \n0 = NO\n";
-        cout<<"\n----> ";
-        cin>> Aleatorio;
 
-        if(Aleatorio > 1 || Aleatorio < 0)
-        {
-            cout<<"\nHa ingresado un valor no permitido. Intente de nuevo\n"<<endl;
-        }
-    }
-    while(Aleatorio > 1 || Aleatorio < 0);
 
-    if(Aleatorio == 1)//Se ejecutara automaticamente la asignacion de valores en la Matriz A y en la matriz Columna B
-    {
-        cout<<"Creando la Matriz A y la Matriz Columna B aleatoriamente"<<endl;
-        //Los siguientes Siclos FOR son paras rellenar la Matriz A del sistema Ax = B
-        for(int i = 0; i< dimensionN; i++)
-        {
-            for(int j = 0; j < dimensionN; j++)
-            {
-                matrizA[i][j] = 1 + rand()%10;
-                MatrizAcomprobar[i][j] = matrizA[i][j];
-            }
-            matrizColumnaB[i] = 1 + rand()%10;
-            MatrizColumnaBComprobar[i] = matrizColumnaB[i];
-        }
-    }
-    else
-    {
         //Los siguientes Siclos For son paras rellenar la Matriz A de sistema Ax = B
         for(int i = 0; i< dimensionN; i++)
         {
             for(int j = 0; j < dimensionN; j++)
             {
-                cout<<"Ingrese un valor al elemento A["<<(i+1)<<"]["<<(j+1)<<"] ---> ";
+                cout<<"\nIngrese un valor al elemento A["<<(i+1)<<"]["<<(j+1)<<"] ---> ";
                 cin>>matrizA[i][j];
                 MatrizAcomprobar[i][j] = matrizA[i][j];
                 cout<<endl;
             }
-            cout<<"Ingrese el valor al elemento B["<<(i+1)<<"] ---> ";
+            cout<<"\nIngrese el valor al elemento B["<<(i+1)<<"] ---> ";
             cin>>matrizColumnaB[i];
             MatrizColumnaBComprobar[i] = matrizColumnaB[i];
         }
-    }
 
     cout<<"\nLa Matriz A Formada es: \n"<<endl;
     // Los siguientes siclos FOR son para mostrar como quedo la matriz creada anteriormente.
