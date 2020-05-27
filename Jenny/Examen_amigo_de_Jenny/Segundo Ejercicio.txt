@@ -1,0 +1,124 @@
+#include <iostream>
+using namespace std;
+
+void BuscarNombreApellido();
+void Order_Nombre_Letra();
+void Order_Apellid_Letra();
+void Mostrar_Nombre_Apellido();
+int main()
+{
+#define MAXPARTICIPANTES 100
+#define MAXCARACTERES 100
+    string Participantes[MAXPARTICIPANTES][MAXPARTICIPANTES];
+    int Opcion =-1;
+    char ParticipanteBuscar[MAXCARACTERES];
+    do
+    {
+
+        cout<<"Escoja una opcion: "<<endl;
+        cout<<"1 - Buscar por Apellido"<<endl;
+        cout<<"2 - Buscar por Nombre"<<endl;
+        cout<<"3 - Order Alfabeticamente"<<endl;
+        cin>>Opcion;
+        switch(Opcion)
+        {
+        case 1:
+            cout<<"Escriba apellido de la persona a buscar"<<endl;
+            cin>>ParticipanteBuscar;
+            string TipoBuqueda= "Apelleido";
+            BuscarNombreApellido(ParticipanteBuscar, Participantes, MAXPARTICIPANTES, TipoBuqueda);
+            break;
+        case 2:
+            cout<<"Escriba el nombre de la persona a buscar"<<endl;
+            cin>>ParticipanteBuscar
+            string TipoBuqueda= "Nombre";
+            BuscarNombreApellido(ParticipanteBuscar,Participantes, MAXPARTICIPANTES, TipoBuqueda);
+            break;
+        case 3:
+            cout<<"Ordenando alfabeticamente"<<endl;
+
+            cin>>ParticipanteBuscar;
+            char LETRAINCIAL='A';
+            Mostrar_Nombre_Apellido(ParticipanteBuscar, Participantes, MAXPARTICIPANTES, LETRAINCIAL);
+            break;
+
+        }
+        cout<<endl;
+    }
+    while(Opcion<0 ||Opcion>=4);
+
+    return 0;
+}
+
+void BuscarNombreApellido(char *texto, string Participantes[][MAXPARTICIPANTES], int LargoDeArreglo, string TipoDeBusqueda)
+{
+    if(TipoDeBusqueda=="Apellido")
+    {
+        for(int i=0; i<  LargoDeArreglo,i++  )
+        {
+            if(texto==Participantes[i][1])
+            {
+                cout<<"Se ha encontrado al participante por medio del Apellid"<<endl;
+                count<<"Su nombre completo es "<<Participantes[i][0]<<" "<<Participantes[i][1]<<endl;
+                break;
+            }
+        }
+    }
+    else
+    {
+        for(int i=0; i<  LargoDeArreglo,i++  )
+        {
+            if(texto==Participantes[0][i])
+            {
+                cout<<"Se ha encontrado al participante por medio del Nombre"<<endl;
+                count<<"Su nombre completo es "<<Participantes[i][0]<<" "<<Participantes[i][1]<<endl;
+                break;
+            }
+        }
+    }
+}
+void Order_Nombre_Letra(char *texto, string Participantes[][MAXPARTICIPANTES], int LargoDeArreglo, char Letra)
+{
+    string ListaDeApellido[MAXPARTICIPANTES];
+    string ListaDeNombre[MAXPARTICIPANTES];
+    for(int i = 0; i < LargoDeArreglo; i++)
+    {
+
+    }
+}
+void Order_Apellid_Letra(char *texto, string Participantes[][MAXPARTICIPANTES])
+{
+    char Letras[]= {'A','B','C','D','F','G','H','I','J','K','L','M','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+    char NombreActual = Participantes[0][0];
+    Participantes=toupper(Participantes);
+    for(int j = 0; j<LargoDeArreglo; i++)
+    {
+        char NombreActual = Participantes[1][j];
+        for(int i=0; i<strlen(Letras); i++)
+        {
+            if(NombreActual == Letras)
+            {
+                cout<<NombreActual;
+            }
+            Letra++;
+        }
+    }
+}
+void Mostrar_Nombre_Apellido(char *texto, string Participantes[][MAXPARTICIPANTES], int LargoDeArreglo, char Letra)
+{
+    char Letras[]= {'A','B','C','D','F','G','H','I','J','K','L','M','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+    char NombreActual = Participantes[0][0];
+    Participantes=toupper(Participantes);
+    for(int j = 0; j<LargoDeArreglo; i++)
+    {
+        char NombreActual = Participantes[j][0];
+        for(int i=0; i<strlen(Letras); i++)
+        {
+            if(NombreActual == Letras)
+            {
+                cout<<NombreActual;
+            }
+            Letra++;
+        }
+    }
+}

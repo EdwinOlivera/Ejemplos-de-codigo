@@ -1,0 +1,158 @@
+#include <iostream>
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+#define MAX 1000
+
+
+void substring(char *Texto, char *subTexto, int inicio, int longitud);
+void centrar_linea(char *linea, int ancho);
+void derecha_linea(char *linea, int ancho);
+void Centrar_oracion(char *Texto, int ancho);
+void Texto_Derecha(char *Texto, int ancho);
+void Justificar_Texto(char *Texto, int ancho);
+
+
+using namespace std;
+int main()
+{
+    char Texto[MAX];
+    int Opcion =-1;
+    cout<<"Ingrese un Texto: "<<endl;
+    cin>>(Texto);
+
+    do
+    {
+        cout<<"\nEscoga una opcion para alinear el texto:"<<endl;
+        cout<<" 0 - Justificar Texto"<<endl;
+        cout<<" 1 - Alinear Texto al Centro"<<endl;
+        cout<<" 2 - Alinear Texto a la Derecha"<<endl;
+        cout<<" 3 - Todas las alineaciones"<<endl;
+        cin>>Opcion;
+
+        if(Opcion<0 || Opcion>3)
+        {
+            cout<<"\nLa opcion ingresada no existe"<<endl;
+            cout<<"Ingrese una opcion valida"<<endl;
+        }
+        else
+        {
+            switch(Opcion)
+            {
+            case 0:
+                cout<<"\nTexto alineada a la Justificado:"<<endl;
+
+                Justificar_Texto(Texto, 80);
+                break;
+            case 1:
+                cout<<"\nTexto centrada:"<<endl;
+                Centrar_oracion(Texto, 80);
+                break;
+            case 2:
+                cout<<"\nTexto alineada a la derecha:"<<endl;
+                Texto_Derecha(Texto, 80);
+                break;
+            case 3:
+                cout<<"\nTexto alineada a la Justificado:"<<endl;
+                cout<<"   "<<Texto<<endl;
+                cout<<"\nTexto centrada:"<<endl;
+                Centrar_oracion(Texto, 80);
+                cout<<"\nTexto alineada a la derecha:"<<endl;
+                Texto_Derecha(Texto, 80);
+                break;
+            }
+        }
+    }
+    while(Opcion<0 || Opcion>3);
+
+
+
+    cout<<"\n"<<endl;
+    cout<<"Fin del programa"<<endl;
+
+    return 0;
+}
+
+void Justificar_Texto(char *Texto, int ancho)
+{
+    int espacios, letraActual;
+    espacios = ancho - strlen(Texto);
+    int LimiteDeCadena = strlen(Texto);
+    do
+    {
+
+        for(int i=0; i<strlen(Texto)+5; i++)
+        {
+            letraActual++;
+            cout<<*Texto++;
+            if(i == espacios-1)
+            {
+                cout<<endl;
+            }
+        }
+    }
+    while(letraActual == strlen(Texto));
+}
+void substring(char *Texto, char *subTexto, int inicio, int longitud)
+{
+    int i;
+
+    for(i=0; i < longitud && inicio+i < strlen(Texto); i++)
+        subTexto[ i ] = Texto[ inicio+i ];
+
+    subTexto[ i ] = '\0';
+}
+
+void centrar_linea(char *linea, int ancho)
+{
+    int i, espacios;
+    espacios = (ancho - strlen(linea)) / 2;
+
+    for(i=0; i < espacios; i++)
+        cout<<" ";
+
+    cout<<linea<<endl;
+}
+
+void derecha_linea(char *linea, int ancho)
+{
+    int i, espacios;
+    espacios = ancho - strlen(linea);
+
+    for(i=0; i < espacios; i++)
+        cout<<" ";
+
+    cout<<linea<<endl;
+}
+
+void Centrar_oracion(char *Texto, int ancho)
+{
+    char subTexto[MAX];
+    int i, total;
+
+    total = (int)ceil((float)strlen(Texto) / ancho);
+
+    for(i=0; i < total; i++)
+    {
+        substring(Texto, subTexto, i*ancho, ancho);
+        centrar_linea(subTexto, ancho);
+    }
+}
+
+void Texto_Derecha(char *Texto, int ancho)
+{
+    char subTexto[MAX];
+    int i, total;
+
+    total = (int)ceil((float)strlen(Texto) / ancho);
+
+    for(i=0; i < total; i++)
+    {
+        substring(Texto, subTexto, i*ancho, ancho);
+        derecha_linea(subTexto, ancho);
+    }
+}
+
