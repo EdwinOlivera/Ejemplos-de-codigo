@@ -5,6 +5,8 @@
  */
 package colanodo;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -24,8 +26,6 @@ public class ColaNodo {
         String opcion;
         Scanner teclado = new Scanner(System.in); //Creación de un objeto Scanner
         TipoInfo Dato = new TipoInfo();
-        String tempString = "";
-        int conteo = 0;
 
         int numeroCorrelativoCliente = 40;
 
@@ -101,7 +101,7 @@ public class ColaNodo {
                     MostrarCola(ColaNormal, ColaPrioridad);
                     System.out.println("****Listo****");
                     break;
- 
+
                 case "s":
                     System.exit(0);
                     break;
@@ -117,7 +117,7 @@ public class ColaNodo {
         TipoInfo temp;
         int contar = 0;
         if (ColaPrioridad.ColaVacia()) {
-            System.out.println("No hay datos que mostrar!!!!!");
+            System.out.println("No hay clientes en la Cola de Prioridad!!!!!");
         } else {
             aux = ColaPrioridad.getInicio();
             System.out.println(">>>>>>>>>>>Cola actual de clientes de Tipo Prioridad<<<<<<<<<<<");
@@ -136,7 +136,7 @@ public class ColaNodo {
         }
         agregarLineas(1);
         if (ColaNormal.ColaVacia()) {
-            System.out.println("No hay datos que mostrar!!!!!");
+            System.out.println("No hay Clientes de tipo Normal!!!!!");
         } else {
             aux = ColaNormal.getInicio();
             System.out.println(">>>>>>>>>>>Cola actual de clientes de Tipo Normal<<<<<<<<<<<");
@@ -174,7 +174,7 @@ public class ColaNodo {
 
         System.out.print("--Edad: ");
 
-        Datos.setEdad(IngresarEdad(edadRegistrada, teclado, tempString, Datos));
+        Datos.setEdad(IngresarEdad(edadRegistrada, teclado, Datos));
 
         System.out.print("--Seleccione su condicion: ");
         do {
@@ -213,14 +213,30 @@ public class ColaNodo {
         return Datos;
     }
 
-    public static int IngresarEdad(int edadRegistrada, Scanner teclado, String tempString, TipoInfo Datos) {
+    public static int IngresarEdad(int edadRegistrada, Scanner teclado, TipoInfo Datos) {
+        Calendar calendario = new GregorianCalendar();
+        int hora, minutos;
+        minutos = calendario.get(Calendar.MINUTE);
+        hora = calendario.get(Calendar.HOUR_OF_DAY);
+        System.out.println("Solo permitido la entrada a personas de edades entre 18 y 99");
         do {
             edadRegistrada = teclado.nextInt();
 
-            if (edadRegistrada < 0 || edadRegistrada > 100) {
+            if (edadRegistrada <= 17 || edadRegistrada >= 100) {
                 System.out.println("\nSe ha ingresado una edad no valida\n");
             }
+            if (edadRegistrada > 64) {
+                if (hora > 9) {
+                    System.out.println("Son mas de las 9 AM y es permitio la entrada a personas de la Tercera Edad");
+                    edadRegistrada = -10;
+                }
 
+            } else {
+                if (hora < 9) {
+                    System.out.println("Son menos de las 9 AM y solo es permitido la entrada a personas de la Tercera Edad");
+                    edadRegistrada = -10;
+                }
+            }
         } while (edadRegistrada <= 17 || edadRegistrada >= 100);
         return edadRegistrada;
     }
@@ -252,7 +268,10 @@ public class ColaNodo {
     public static void MeterN(TadCola ColaNormal, TadCola ColaPrioridad, int pTotal, String[] arregloTipoCliente) {
         TipoInfo temp;
         int x = 0;
-
+        Calendar calendario = new GregorianCalendar();
+        int hora, minutos;
+        minutos = calendario.get(Calendar.MINUTE);
+        hora = calendario.get(Calendar.HOUR_OF_DAY);
         Random rnd = new Random();
         int prioridad = 0;
         for (x = 1; x <= pTotal; x++) {
@@ -265,19 +284,23 @@ public class ColaNodo {
             temp.setPrioridad(prioridad);
             ColaNormal.Meter(temp);
         }
-
-        for (x = 1; x <= pTotal; x++) {
-            temp = new TipoInfo();
-            temp.setID(String.valueOf(rnd.nextInt(8999) + 1000));
-            temp.setNombre("E" + String.valueOf(rnd.nextInt(8999) + 1000));
-            temp.setCondicion(arregloTipoCliente[1]);
-            temp.setEdad(rnd.nextInt(99) + 17);
-            prioridad = 1;
-            temp.setPrioridad(prioridad);
-            ColaPrioridad.Meter(temp);
+        agregarLineas(1);
+        if (hora > 9) {
+            System.out.println(">>>>>>>>>>>>No se registraran ningun cliente de Tercera Edad. No es la hora permitida<<<<<<<<<<<<");
+        } else {
+            for (x = 1; x <= pTotal; x++) {
+                temp = new TipoInfo();
+                temp.setID(String.valueOf(rnd.nextInt(8999) + 1000));
+                temp.setNombre("E" + String.valueOf(rnd.nextInt(8999) + 1000));
+                temp.setCondicion(arregloTipoCliente[1]);
+                temp.setEdad(rnd.nextInt(99) + 17);
+                prioridad = 1;
+                temp.setPrioridad(prioridad);
+                ColaPrioridad.Meter(temp);
+            }
         }
-    }
 
+    }
 
     //Funciones que son utilizadas para retirar clientes de las filas
     public static int RealizarPeticionesGenerales(TadCola ColaNormal, TadCola ColaPrioridad, TipoInfo Dato, Scanner teclado) {
