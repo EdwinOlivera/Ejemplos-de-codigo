@@ -5,8 +5,6 @@
  */
 package colanodo;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -28,8 +26,6 @@ public class ColaNodo {
         TipoInfo Dato = new TipoInfo();
         String tempString = "";
         int conteo = 0;
-
-      
 
         int numeroCorrelativoAlumno = 40;
 
@@ -307,6 +303,7 @@ public class ColaNodo {
                 System.out.println("\nSe ha realizado una solicitud con los siguientes datos: ");
                 MostrarDato(Dato);
                 Dato = ColaEstu.verInicio();
+                ColaEstu.Sacar();
                 System.out.println("\nEl siguiente tramite es: ");
                 MostrarDato(Dato);
                 pausa();
