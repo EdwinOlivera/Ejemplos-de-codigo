@@ -481,4 +481,17 @@ healthchecksdb
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
 
+
+### NetBeans ###
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+
+
 # End of https://www.gitignore.io/api/eclipse,netbeans,codeblocks,sublimetext,visualstudio,visualstudiocode
