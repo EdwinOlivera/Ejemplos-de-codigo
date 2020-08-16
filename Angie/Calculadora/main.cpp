@@ -1,164 +1,292 @@
 #include <iostream>
 #include <math.h>
+#include <stdlib.h>
+#include <string>
+
+float IngresarDatos();
+
 //Operaciones basicas
-void sumar(int *x, int *y, float *resultado);
-void restar(int *x, int *y, float *resultado);
-void dividir(int *x, int *y, float *resultado);
-void multiplicar(int *x, int *y, float *resultado);
-void potencia(int *x, float *resultado);
-void raizCuadrada(int *x, float *resultado);
+void Sumar(float *num1, float *num2, float *resultado);
+void Restar(float *num1, float *num2, float *resultado);
+void Dividir(float *num1, float *num2, float *resultado);
+void Multiplicar(float *num1, float *num2, float *resultado);
+void Potencia(float *valor, float *resultado);
+void RaizCuadrada(float *valor, float *resultado);
 //Operaciones Avanzadas
+void FuncionExponencial(float *valor, float *resultado);
+void Logaritmo(float *valor, float *resultado);
+void Redondeo(float *valor, float *resultado);
+void ValorAbsoluto(float *valor, float *resultado);
 
 //Operaciones Especiales
-using namespace std;
+void NumeroPrimo(float *valor, float *resultado);
+void FactorizarNumero(float *valor);
+void ValorEnCadena(float *valor);
+void Modulo(float *valor, float *resultado);
+
 
 int main()
 {
-    char opcion;
-    int x,y;
+    int opcion;
+
+
+    float num1,num2;
     float resultado = 0;
     float *apuGen;
-    int *apuX, *apuY;
+    float *apuNum1, *apuNum2;
 
 
     //Apuntando a las variables
-    apuGen =&resultado;
-    apuX = &x;
-    apuY = &y;
-    cout<<"Ingrese el valor de X: "<<endl;
-    cin>>x;
-    cout<<"Ingrese el valor de Y: "<<endl;
-    cin>>y;
+    apuGen = &resultado;
+    apuNum1 = &num1;
+    apuNum2 = &num2;
+    std::cout<<"Ingrese el primer valor"<<std::endl;
+    num1 = IngresarDatos();
+
+    std::cout<<"Ingrese el Segundo valor"<<std::endl;
+    num2 = IngresarDatos();
+
+
+
     do
     {
 
-        cout<<"Menu principal"<<endl;
-        cout<<"----->Operaciones Basicas<-----"<<endl;
-        cout<<"1 = Sumar (X+Y)"<<endl;
-        cout<<"2 = Restar (X-Y)"<<endl;
-        cout<<"3 = Multiplicar (X*Y)"<<endl;
-        cout<<"4 = Dividir (X/Y). Y!=0"<<endl;
-        cout<<"5 = Potencia de X  (X^n)"<<endl;
-        cout<<"6 = Potencia de Y  (Y^n)"<<endl;
-        cout<<"7 = Raiz cuadrada X (sqrt(X))"<<endl;
-        cout<<"8 = Raiz cuadrada Y (sqrt(Y))"<<endl;
-        cout<<"s = Salir del sistema"<<endl;
-        cin>>opcion;
+        std::cout<<"Menu principal"<<std::endl;
 
+        std::cout<<"----->Operaciones Basicas<-----"<<std::endl;
+        std::cout<<"1 = Sumar ("<<*apuNum1<<"+"<<*apuNum2<<")"<<std::endl;
+        std::cout<<"2 = Restar ("<<*apuNum1<<"-"<<*apuNum2<<")"<<std::endl;
+        std::cout<<"3 = Multiplicar ("<<*apuNum1<<"*"<<*apuNum2<<")"<<std::endl;
+        std::cout<<"4 = Dividir ("<<*apuNum1<<"/"<<*apuNum2<<")"<<std::endl;
+        std::cout<<"5 = Potencia de "<<*apuNum1<<"("<<*apuNum1<<"^n)"<<std::endl;
+        std::cout<<"6 = Potencia de "<<*apuNum2<<"("<<*apuNum2<<"^n)"<<std::endl;
+        std::cout<<"7 = Raiz cuadrada de "<<*apuNum1 <<"(sqrt("<<*apuNum1<<"))"<<std::endl;
+        std::cout<<"8 = Raiz cuadrada de "<<*apuNum2 <<"(sqrt("<<*apuNum2<<"))"<<std::endl;
+
+
+        std::cout<<"----->Operaciones Avanzadas<-----"<<std::endl;
+        std::cout<<"9 = Funcion Exponencial de F(x) = e^"<<*apuNum1<<std::endl;
+        std::cout<<"10 = Logaritmo Neperiamo de "<<*apuNum1<<std::endl;
+        std::cout<<"11 = Redondeo al entero mas cercano de "<<*apuNum1<<std::endl;
+        std::cout<<"12 = Valor absoluto de "<<*apuNum1<<std::endl;
+
+
+        std::cout<<"----->Operaciones Especiales<-----"<<std::endl;
+        std::cout<<"13 = Determinar numero primo a: "<<*apuNum1<<std::endl;
+        std::cout<<"14 = Factores primos de: "<<*apuNum1<<std::endl;
+        std::cout<<"15 = Valor en cadena de: "<<*apuNum1<<std::endl;
+        std::cout<<"16 = Calculo de Modulo de: "<<*apuNum1<<std::endl;
+
+        std::cout<<"----->Acciones del sistema<-----"<<std::endl;
+        std::cout<<"98 = Reaccinar el Primer valor"<<std::endl;
+        std::cout<<"99 = Reaccinar el Primer valor"<<std::endl;
+        std::cout<<"0 = Salir del sistema"<<std::endl;
+        std::cout<<"Ingrese [0 - 12] -> ";
+        std::cin>>opcion;
+        std::cout<<std::endl;
         switch(opcion)
         {
-        case '1':
-            sumar(apuX,apuY,apuGen);
+        //Operaciones Basicas
+        case 98:
+            std::cout<<"Ingrese el nuevo Primer valor"<<std::endl;
+            num1 = IngresarDatos();//No se sabe porque es necesario usar 2 veces la misma funcion para que funcione
+            num1 = IngresarDatos();
+            break;
+        case 99:
+            std::cout<<"Ingrese el nuevo Segundo valor"<<std::endl;
+            num2 = IngresarDatos();//No se sabe porque es necesario usar 2 veces la misma funcion para que funcione
+            num2 = IngresarDatos();
+            break;
+        case 1:
+            Sumar(apuNum1,apuNum2,apuGen);
 
-            cout<<"La suma es: "<<*apuGen<<endl;
+            std::cout<<"La suma es: "<<resultado<<std::endl;
 
             break;
-        case '2':
-            restar(apuX,apuY,apuGen);
+        case 2:
 
-            cout<<"La resta es: "<<*apuGen<<endl;
+            Restar(apuNum1,apuNum2,apuGen);
 
-            break;
-        case '3':
-            multiplicar(apuX,apuY,apuGen);
-
-            cout<<"La mulplicacion es: "<<*apuGen<<endl;
+            std::cout<<"La resta es: "<<resultado<<std::endl;
 
             break;
-        case '4':
-            dividir(apuX,apuY,apuGen);
+        case 3:
+            Multiplicar(apuNum1,apuNum2,apuGen);
 
-            cout<<"La division es: "<<*apuGen<<endl;
-
-            break;
-        case '5':
-            potencia(apuX,apuGen);
-
-            cout<<"Potencia de X es: "<<*apuGen<<endl;
+            std::cout<<"La mulplicacion es: "<<resultado<<std::endl;
 
             break;
-        case '6':
-            potencia(apuY,apuGen);
+        case 4:
+            Dividir(apuNum1,apuNum2,apuGen);
 
-            cout<<"Potencia de Y es: "<<*apuGen<<endl;
-            break;
-        case '7':
-            raizCuadrada(apuX,apuGen);
-
-            cout<<"Raiz cuadrada de X es: "<<*apuGen<<endl;
+            std::cout<<"La division es: "<<resultado<<std::endl;
 
             break;
-        case '8':
-            raizCuadrada(apuY,apuGen);
+        case 5:
+            Potencia(apuNum1,apuGen);
 
-            cout<<"Raiz cuadrada de Y es: "<<*apuGen<<endl;
+            std::cout<<"La Potencia de "<<num1<<" es: "<<resultado<<std::endl;
 
             break;
-        case 's':
-            cout<<"saliendo del sistema"<<endl;
+        case 6:
+            Potencia(apuNum2,apuGen);
+
+            std::cout<<"La Potencia de "<<num2<<" es: "<<resultado<<std::endl;
+            break;
+        case 7:
+            RaizCuadrada(apuNum1,apuGen);
+
+            std::cout<<"La Raiz cuadrad de  "<<num1<<" es: "<<resultado<<std::endl;
+            break;
+        case 8:
+            RaizCuadrada(apuNum2,apuGen);
+
+            std::cout<<"La Raiz cuadrad de  "<<num2<<" es: "<<resultado<<std::endl;
+            break;
+        //Operaciones Avanzadas
+        case 9:
+            FuncionExponencial(apuNum1,apuGen);
+            std::cout<<"Funcion exponencial de e^x evaluado x = "<<num1<<" es: "<<resultado<<std::endl;
+            break;
+        case 10:
+            Logaritmo(apuNum1, apuGen);
+            std::cout<<"El logaritmo neperiano de "<<num1<<" es: "<<resultado<<std::endl;
+            break;
+        case 11:
+            Redondeo(apuNum1, apuGen);
+            std::cout<<"El Redondeo de "<<num1<<" es: "<<resultado<<std::endl;
+            break;
+        case 12:
+            ValorAbsoluto(apuNum1,apuGen);
+            std::cout<<"El valor absoluto de "<<num1<<" es: "<<resultado<<std::endl;
+            break;
+        case 13:
+            NumeroPrimo(apuNum1, apuGen);
+
+            break;
+        case 14:
+            FactorizarNumero(apuNum1);
+            break;
+        case 15:
+
+            ValorEnCadena(apuNum1);
+            break;
+        case 16:
+
+            Modulo(apuNum1,apuGen);
+
+
+            break;
+        case 0:
+            std::cout<<"saliendo del sistema"<<std::endl;
             break;
 
         }
-
-
-
-
-
-
-
-
-
-        //Codigo para conseguir factorizar en numeros primos un numero X
-        /*    int n,f;
-
-         cout <<"Ingrese un numero > :";
-         cin >>n;
-         f = 2;
-
-         while (n>1) {
-           if (n%f==0) {
-             cout <<f <<endl;
-             n = n/f;
-           }
-           else
-             f++;
-         }
-
-           cout << "Hello world!" << endl;
-          */
+        std::cout<<std::endl;
     }
-    while(opcion!='s');
+    while(opcion!=0);
     return 0;
 }
-void sumar(int *x, int *y, float *resultado)
+float IngresarDatos()
 {
-    *resultado = *x + *y;
-}
-void restar(int *x, int *y, float *resultado)
-{
-    *resultado = *x - *y;
+    int posicionDecimal=-1;
+    float tmpNumero = 0, auxNum = 1;
+    float numero = 0.0;
+    float pi = 3.1416, euler = 2.7118;
+    char textoIngresado[12];
+    std::string decimales, tmpString ;
+    std::cin.getline(textoIngresado,12);
+    while(textoIngresado[(int)tmpNumero]!='\0' )
+    {
+
+        textoIngresado[(int)tmpNumero] =  tolower(textoIngresado[(int)tmpNumero]);
+        tmpString +=  textoIngresado[(int)tmpNumero];
+
+        tmpNumero++;
+
+    }
+
+    tmpNumero=0;
+
+    if(tmpString == "pi")
+    {
+
+        numero = pi;
+    }
+    else if(tmpString == "e")
+    {
+
+        numero = euler;
+    }
+    else
+    {
+
+        while(textoIngresado[(int)tmpNumero]!='\0' )
+        {
+            if(textoIngresado[(int)tmpNumero] == '.')
+            {
+                posicionDecimal = tmpNumero;
+            }
+            if(posicionDecimal !=-1 && textoIngresado[posicionDecimal+1] !='\0' )
+            {
+                tmpNumero = posicionDecimal+1;
+                while(textoIngresado[(int)tmpNumero]!='\0' )
+                {
+                    decimales +=  textoIngresado[(int)tmpNumero];
+
+                    auxNum*=10;
+                    tmpNumero++;
+                }
+                posicionDecimal=-1;
+            }
+            tmpNumero++;
+        }
+        tmpNumero = atoi(decimales.c_str());
+
+        tmpNumero = (tmpNumero/auxNum);
+        if(atoi(textoIngresado)<0)
+        {
+            numero = atoi(textoIngresado) - tmpNumero;
+        }
+        else
+        {
+            numero = atoi(textoIngresado) + tmpNumero;
+        }
+
+    }
+    return numero;
 }
 
-void dividir(int *x, int *y, float *resultado)
+//Operaciones Basica
+void Sumar(float *x, float *num2, float *resultado)
+{
+    *resultado = *x + *num2;
+}
+void Restar(float *x, float *num2, float *resultado)
+{
+    *resultado = *x - *num2;
+}
+
+void Dividir(float *x, float *num2, float *resultado)
 {
     *resultado  = 0;
-    if(*y !=0)
-        *resultado = *x / *y;
+    if(*num2 !=0)
+        *resultado = *x / *num2;
     else
-        cout<<"No se puede hacer la division"<<endl;
+        std::cout<<"No se puede hacer la division"<<std::endl;
 }
-void multiplicar(int *x, int *y, float *resultado)
+void Multiplicar(float *x, float *num2, float *resultado)
 {
-    *resultado = *x * *y;
+    *resultado = *x * *num2;
 }
-void potencia(int *valor, float *resultado)
+void Potencia(float *valor, float *resultado)
 {
     int potenciaSelec = 0;
-    cout<<"Ingrese la potencia a elevar a "<<*valor<<endl;
-    cin>>potenciaSelec;
+    std::cout<<"Ingrese la potencia a elevar a "<<*valor<<std::endl;
+    std::cin>>potenciaSelec;
     *resultado = pow(*valor,potenciaSelec);
 }
-void raizCuadrada(int *valor, float *resultado)
+void RaizCuadrada(float *valor, float *resultado)
 {
     *resultado = 0;
     if(*valor>=0)
@@ -166,7 +294,96 @@ void raizCuadrada(int *valor, float *resultado)
         *resultado = sqrt(*valor);
     }
     else
-        cout<<"No se puede calcular la Raiz cuadrada"<<endl;
+        std::cout<<"No se puede calcular la Raiz cuadrada"<<std::endl;
 
 }
 
+//Operaciones Avanzadas
+void FuncionExponencial(float *valor, float *resultado)
+{
+    float euler = 2.718281828;
+    *resultado = pow(euler, *valor);
+
+}
+void Logaritmo(float *valor, float *resultado)
+{
+    if(*valor >=0)
+        *resultado = log(*valor);
+    else
+        std::cout<<"No se puede calcular el logaritmo neperiano"<<std::endl;
+}
+void Redondeo(float *valor, float *resultado)
+{
+    std::cout<<"floot"<<floor(*valor)<<std::endl;
+    std::cout<<"ceil"<<ceil(*valor)<<std::endl;
+    if(*valor-floor(*valor)>ceil(*valor)-*valor)
+        *resultado = ceil(*valor);
+    else
+        *resultado = floor(*valor);
+}
+void ValorAbsoluto(float *valor, float *resultado)
+{
+    *resultado = abs((int)*valor)+((int)*valor - *valor);
+}
+//Operacion Especiales
+void NumeroPrimo(float *valor, float *resultado)
+{
+    int divisor = 1, divisores = 0;
+
+    do
+    {
+        if((int)*valor % divisor == 0)
+        {
+            divisores++;
+        }
+        divisor++;
+    }
+    while(divisor <= *valor);
+
+    if(divisores == 2)
+    {
+        std::cout<<"n-> El numero "<<*valor<<" es PRIMO.";
+    }
+    else
+    {
+        std::cout<<"n-> El numero "<<*valor<<" NO es PRIMO.";
+    }
+}
+
+void FactorizarNumero(float *valor)
+{
+
+    int numer;
+    numer = 2;
+    float numeroRecibidio= *valor;
+    while (numeroRecibidio!=1)
+    {
+        if ((int)numeroRecibidio%numer==0)
+        {
+            std::cout <<numer<<std::endl;
+            numeroRecibidio = numeroRecibidio/numer;
+            if(numeroRecibidio ==-1)
+            {
+                numeroRecibidio *=numeroRecibidio;
+            }
+        }
+        else
+            numer++;
+    }
+
+}
+
+void ValorEnCadena(float *valor)
+{
+    char character;
+    character = *valor;
+    std::cout<<character<<std::endl;
+}
+
+void Modulo(float *valor, float *resultado)
+{
+    int modulo = 1;
+    std::cout<<"Ingrese el valor para sacar el modulo de "<<*valor<<" : ";
+    std::cin>>modulo;
+    *resultado = ((int)*valor)%modulo;
+}
