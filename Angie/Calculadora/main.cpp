@@ -12,6 +12,7 @@ void Dividir(float *num1, float *num2, float *resultado);
 void Multiplicar(float *num1, float *num2, float *resultado);
 void Potencia(float *valor, float *resultado);
 void RaizCuadrada(float *valor, float *resultado);
+
 //Operaciones Avanzadas
 void FuncionExponencial(float *valor, float *resultado);
 void Logaritmo(float *valor, float *resultado);
@@ -38,10 +39,11 @@ int main()
 
     //Apuntando a las variables
     apuGen = &resultado;
+    apuNum1  = apuGen;
     apuNum1 = &num1;
     apuNum2 = &num2;
     std::cout<<"Ingrese el primer valor"<<std::endl;
-    num1 = IngresarDatos();
+    num1 = IngresarDatos();//
 
     std::cout<<"Ingrese el Segundo valor"<<std::endl;
     num2 = IngresarDatos();
@@ -79,9 +81,9 @@ int main()
 
         std::cout<<"----->Acciones del sistema<-----"<<std::endl;
         std::cout<<"98 = Reaccinar el Primer valor"<<std::endl;
-        std::cout<<"99 = Reaccinar el Primer valor"<<std::endl;
+        std::cout<<"99 = Reaccinar el Segundo valor"<<std::endl;
         std::cout<<"0 = Salir del sistema"<<std::endl;
-        std::cout<<"Ingrese [0 - 12] -> ";
+        std::cout<<"Ingrese [0 - 16, 98,99] -> ";
         std::cin>>opcion;
         std::cout<<std::endl;
         switch(opcion)
@@ -178,7 +180,7 @@ int main()
 
             break;
         case 0:
-            std::cout<<"saliendo del sistema"<<std::endl;
+            std::cout<<"Saliendo del sistema"<<std::endl;
             break;
 
         }
@@ -189,13 +191,14 @@ int main()
 }
 float IngresarDatos()
 {
-    int posicionDecimal=-1;
+    int posicionDecimal=-1;// 31212 . 12121, 12.1223
     float tmpNumero = 0, auxNum = 1;
     float numero = 0.0;
     float pi = 3.1416, euler = 2.7118;
     char textoIngresado[12];
     std::string decimales, tmpString ;
-    std::cin.getline(textoIngresado,12);
+    std::cin.getline(textoIngresado,12);// 3.455
+    //Pone en minuscula la cadena ingregasa= PI == pi
     while(textoIngresado[(int)tmpNumero]!='\0' )
     {
 
@@ -227,6 +230,9 @@ float IngresarDatos()
             {
                 posicionDecimal = tmpNumero;
             }
+
+            //3.1234
+            // 1234// 323.412 // 4 / 10 = 0.4// 40 /100 = 0.40// 412/1000 = 0.412
             if(posicionDecimal !=-1 && textoIngresado[posicionDecimal+1] !='\0' )
             {
                 tmpNumero = posicionDecimal+1;
@@ -241,15 +247,18 @@ float IngresarDatos()
             }
             tmpNumero++;
         }
+//ABC = ['A', 'B', 'C'] "656" = 656/1000 = 0.656
         tmpNumero = atoi(decimales.c_str());
 
         tmpNumero = (tmpNumero/auxNum);
         if(atoi(textoIngresado)<0)
         {
+            // -3 + 0.12 = -2.88// -3.12
             numero = atoi(textoIngresado) - tmpNumero;
         }
         else
         {
+            // +3 + 0.12 = 3.12
             numero = atoi(textoIngresado) + tmpNumero;
         }
 
@@ -258,9 +267,9 @@ float IngresarDatos()
 }
 
 //Operaciones Basica
-void Sumar(float *x, float *num2, float *resultado)
+void Sumar(float *num1, float *num2, float *resultado)
 {
-    *resultado = *x + *num2;
+    *resultado = *num1 + *num2;
 }
 void Restar(float *x, float *num2, float *resultado)
 {
@@ -314,8 +323,8 @@ void Logaritmo(float *valor, float *resultado)
 }
 void Redondeo(float *valor, float *resultado)
 {
-    std::cout<<"floot"<<floor(*valor)<<std::endl;
-    std::cout<<"ceil"<<ceil(*valor)<<std::endl;
+
+//3.14 =3, 3.6 = 4
     if(*valor-floor(*valor)>ceil(*valor)-*valor)
         *resultado = ceil(*valor);
     else
@@ -323,13 +332,14 @@ void Redondeo(float *valor, float *resultado)
 }
 void ValorAbsoluto(float *valor, float *resultado)
 {
-    *resultado = abs((int)*valor)+((int)*valor - *valor);
+    *resultado = abs((int)*valor);
 }
+
 //Operacion Especiales
 void NumeroPrimo(float *valor, float *resultado)
 {
     int divisor = 1, divisores = 0;
-
+// 2, 3, 5 , 7, 11, 13, 23,
     do
     {
         if((int)*valor % divisor == 0)
@@ -352,10 +362,11 @@ void NumeroPrimo(float *valor, float *resultado)
 
 void FactorizarNumero(float *valor)
 {
-
+// 12 / 2 = 6 / 2 = 3 / 3 = 1
+// -12 / 2 = -6 / 2 = -3 / 3 = -1
     int numer;
     numer = 2;
-    float numeroRecibidio= *valor;
+    float numeroRecibidio = *valor;
     while (numeroRecibidio!=1)
     {
         if ((int)numeroRecibidio%numer==0)
@@ -375,9 +386,24 @@ void FactorizarNumero(float *valor)
 
 void ValorEnCadena(float *valor)
 {
+    // ASCII = A => 65, B =>66, C=>67
     char character;
-    character = *valor;
-    std::cout<<character<<std::endl;
+    if(*valor>64 && *valor<91 )
+    {
+        character = *valor;
+        std::cout<<character<<std::endl;
+
+    }
+    else if(*valor>96 && *valor<123)
+    {
+        character = *valor;
+        std::cout<<character<<std::endl;
+    }
+    else
+    {
+        character = *valor;
+        std::cout<<"El caracter no es una letra, sino que es "<<character<<std::endl;
+    }
 }
 
 void Modulo(float *valor, float *resultado)
@@ -386,4 +412,5 @@ void Modulo(float *valor, float *resultado)
     std::cout<<"Ingrese el valor para sacar el modulo de "<<*valor<<" : ";
     std::cin>>modulo;
     *resultado = ((int)*valor)%modulo;
+    std::cout<<"El modulo de "<<*valor<<" con "<<modulo<<" es: "<<*resultado<<std::endl;
 }
