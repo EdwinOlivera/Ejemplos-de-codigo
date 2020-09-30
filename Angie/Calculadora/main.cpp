@@ -28,6 +28,7 @@ void Modulo(float *valor, float *resultado);
 
 int main()
 {
+    //Calculadora que utiliza apuntadores para hacer sus operaciones matematicas
     int opcion;
 
 

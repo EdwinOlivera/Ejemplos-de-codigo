@@ -4,6 +4,8 @@ using namespace std;
 int primo_suma(int *A, int n);
 int main()
 {
+
+    //Suma los numeros primos de [0, x] incluido x
     int AD[100];
     int *A = AD;
     int n = 15;

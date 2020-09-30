@@ -2,7 +2,8 @@
 
 using namespace std;
 
-
+//IMPORTANTE
+//Ejecucion del metodo Quicksort mara ordera arreglos de numeros
 void MostarArreglo(int *ArregloDeElementos, int n)
 {
     for (int i = 0; i < n; ++i)

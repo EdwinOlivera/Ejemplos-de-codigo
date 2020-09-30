@@ -3,7 +3,7 @@ using namespace std;
 
 void encriptar(char *frase, char *clave);
 void mostrar(char *frase);
-
+//Encripta palabra
 int main()
 {
     char frase[100], clave[100];

@@ -7,6 +7,8 @@ void MostrarFecha (int *);
 
 int main()
 {
+    //IMPORTANTE
+    //Determina FECHA usando Apuntadores
 // ************* Delarar cadenas y variables*****************
     char cFecha[11];
     char tmpCadena[5];
