@@ -9,7 +9,6 @@ Algoritmo determinarResultado
 		acumN<-acumN*i;
 		
 	FinPara
-	
 	//
 	acumR<-1;
 	Repetir
@@ -26,7 +25,6 @@ Algoritmo determinarResultado
 		acumR<-acumR*i;
 		
 	FinPara
-	
 	//
 	factorialResta<-1;
 	resta<-(numN - numR);
@@ -36,9 +34,9 @@ Algoritmo determinarResultado
 		
 	FinPara
 	
-	multiplicacion <- (factorialResta * numR);
+	multiplicacion <- (factorialResta * acumR);
 	
-	division = numN/multiplicacion;
+	division = acumN/multiplicacion;
 	Escribir "El resultado final es ", division;
 	
 FinAlgoritmo
