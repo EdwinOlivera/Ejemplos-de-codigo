@@ -1,0 +1,70 @@
+/* body {
+    background-color: blue;
+} */
+
+.expanded {
+    /* Cambiar color para la version final */
+    background-color: red;
+    /* Ancho del componente al maximo posible */
+    width: 100%;
+
+    /* Espacio interno del componente */
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    /* Colo de la letra del componente */
+    color: white;
+/* Otras propiedades */
+margin-top: 10px;
+margin-bottom: 10px;
+
+}
+.expanded_row {
+    /* Cambiar color para la version final */
+    background-color: orange;
+    /* Ancho del componente al maximo posible */
+    width: 100%;
+
+/* Espacio interno del componente */
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    /* Colo de la letra del componente */
+    color: white;
+/* Otras propiedades */
+margin-top: 10px;
+margin-bottom: 10px;
+
+}
+.style_border_cel {
+
+border-color: white;
+border: 1px solid white;
+
+
+}
+.tex_aling_lef{
+    font-weight: bold;
+    font-size: 1vw;
+    text-align: left;
+    align-items: left;    
+}
+.all_border{
+    border: 1px solid black;
+    padding: 10px;
+    margin: 0px 0px 0px 0px;
+}
+.text_center{
+
+    /* Propiedades para control del texto */
+    font-weight: bold;
+    font-size: 1.5vw;
+    text-align: center;
+    
+}
+.dropdown_design{
+    width: 50%;
+    background-color: black;
+    padding-right: 0px;
+    margin-left: 0px;
+}

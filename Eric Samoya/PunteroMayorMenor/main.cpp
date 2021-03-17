@@ -11,20 +11,14 @@ void imprimirMinimo(int *, int );
 int main()
 {
 
-    int dimensionDelArreglo;
-    int *apuntadorArreglo;
-
-    cout<<"Ingrese la dimension del arreglo ";
-    cin>>dimensionDelArreglo;
-    int arregloNumero[dimensionDelArreglo];
-    apuntadorArreglo  = &arregloNumero[0];
-    llenarArregloAleatoreamente(apuntadorArreglo, dimensionDelArreglo);
-
-    imprimirTodo(apuntadorArreglo, dimensionDelArreglo);
-    imprimirMinimo(apuntadorArreglo, dimensionDelArreglo);
-    imprimirMaximo(apuntadorArreglo, dimensionDelArreglo);
+char cadena[50];
+char Vocal[ ]="aeiou";
     return 0;
 }
+
+
+
+
 void llenarArregloAleatoreamente(int *apuntadorArreglo, int dimensionDelArreglo)
 {
     srand(time(NULL));
