@@ -1,0 +1,39 @@
+# Project: BuscaMinas
+# Compiler: Default GCC compiler
+# Compiler Type: MingW 3
+# Makefile created by wxDev-C++ 6.10.2 on 12/12/13 13:02
+
+CPP       = g++.exe
+CC        = gcc.exe
+WINDRES   = windres.exe
+OBJ       = Default\ Profile/main.o Default\ Profile/Buscaminas.o Default\ Profile/CONSOLA.o
+LINKOBJ   = "Default Profile/main.o" "Default Profile/Buscaminas.o" "Default Profile/CONSOLA.o"
+LIBS      = -L"C:/Program Files/Dev-Cpp/Lib"  
+INCS      = -I"include"
+CXXINCS   = -I"C:/Program Files/Dev-Cpp/lib/gcc/mingw32/3.4.2/include" -I"C:/Program Files/Dev-Cpp/include/c++/3.4.2/backward" -I"C:/Program Files/Dev-Cpp/include/c++/3.4.2/mingw32" -I"C:/Program Files/Dev-Cpp/include/c++/3.4.2" -I"C:/Program Files/Dev-Cpp/include" -I"C:/Program Files/Dev-Cpp/" -I"C:/Program Files/Dev-Cpp/include/common/wx/msw" -I"C:/Program Files/Dev-Cpp/include/common/wx/generic" -I"C:/Program Files/Dev-Cpp/include/common/wx/fl" -I"C:/Program Files/Dev-Cpp/include/common/wx/gizmos" -I"C:/Program Files/Dev-Cpp/include/common/wx/html" -I"C:/Program Files/Dev-Cpp/include/common/wx/mmedia" -I"C:/Program Files/Dev-Cpp/include/common/wx/net" -I"C:/Program Files/Dev-Cpp/include/common/wx/ogl" -I"C:/Program Files/Dev-Cpp/include/common/wx/plot" -I"C:/Program Files/Dev-Cpp/include/common/wx/protocol" -I"C:/Program Files/Dev-Cpp/include/common/wx/stc" -I"C:/Program Files/Dev-Cpp/include/common/wx/svg" -I"C:/Program Files/Dev-Cpp/include/common/wx/xml" -I"C:/Program Files/Dev-Cpp/include/common/wx/xrc" -I"C:/Program Files/Dev-Cpp/include/common/wx" -I"C:/Program Files/Dev-Cpp/include/common"
+RCINCS    = --include-dir "C:/PROGRA~1/Dev-Cpp/include/common"
+BIN       = Default\ Profile/BuscaMinas.exe
+DEFINES   = 
+CXXFLAGS  = $(CXXINCS) $(DEFINES)  
+CFLAGS    = $(INCS) $(DEFINES)  
+GPROF     = gprof.exe
+RM        = rm -f
+LINK      = g++.exe
+
+.PHONY: all all-before all-after clean clean-custom
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	$(RM) $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(LINK) $(LINKOBJ) -o "Default Profile\BuscaMinas.exe" $(LIBS)
+
+Default\ Profile/main.o: $(GLOBALDEPS) main.cpp Buscaminas.h CONSOLA.H
+	$(CPP) -c main.cpp -o "Default Profile/main.o" $(CXXFLAGS)
+
+Default\ Profile/Buscaminas.o: $(GLOBALDEPS) Buscaminas.cpp Buscaminas.h CONSOLA.H
+	$(CPP) -c Buscaminas.cpp -o "Default Profile/Buscaminas.o" $(CXXFLAGS)
+
+Default\ Profile/CONSOLA.o: $(GLOBALDEPS) CONSOLA.CPP CONSOLA.H
+	$(CPP) -c CONSOLA.CPP -o "Default Profile/CONSOLA.o" $(CXXFLAGS)
