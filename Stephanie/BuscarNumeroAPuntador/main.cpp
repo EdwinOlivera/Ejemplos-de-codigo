@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include<time.h>
 #include<stdlib.h>
@@ -85,6 +84,3 @@ void posicionesElemento(int *apuntador,  int elemento, int dimensionMaximaArrelg
         cout<<"No se encontro el elemento >>"<<elemento<<"<< en el arreglo generado."<<endl;
     }
 }
-
-
-

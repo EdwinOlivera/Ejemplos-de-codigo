@@ -3,7 +3,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <conio.h>
-#include <time.h>
+#include<time.h>
 
 #define ARRIBA 72
 #define IZQUIERDA 75
@@ -14,13 +14,12 @@
 #define tA 97
 #define tD 100
 #define tS 115
-
 #define ESC 27//Esta es la tecla de ESCAPE (ESC), la que se encuentra en la esquina izquierda superior de los teclados convencionales
 
 
 // Definimos las variables de forma globla, asi evitamos que las funciones devuelvan algun valor o definir la misma variable en cada funcion
 int cuerpo[300][2];
-int n = 1, tam = 4, dir = 3;
+int n = 1, tam = 10, dir = 3;
 int x = 10, y = 12;
 int xc = 30, yc = 15;
 int velocidad = 120;
@@ -40,7 +39,6 @@ using namespace std;
 
 int main()
 {
-
     OcultaCursor();
     srand(time(NULL));
     pintar();
@@ -75,7 +73,6 @@ int main()
 
 void colocarCoordenada(int x, int y)
 {
-
     HANDLE cursoManual;
     COORD posicionesCursor;
 
