@@ -109,8 +109,6 @@ void dibujarTablero(char miTablero[][MAXDIMENSION])
 // Cuenta la cantidad de minas contiguas
 int conteoMinasAdyacente(int fila, int columna, int minas[][2],char tableroPrincipal[][MAXDIMENSION])
 {
-
-
     int cantidad = 0;
 
     //----------- Casilla norte (arriba-centro) ------------

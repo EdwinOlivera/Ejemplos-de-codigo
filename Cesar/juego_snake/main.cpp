@@ -2,9 +2,12 @@
 #include <windows.h>
 #include <iostream>
 #include <stdlib.h>
-#include <conio.h>
 #include <time.h>
-
+#include <conio.h>
+// Presionar = undirla
+// Liberal = suelta
+// Dectar la tecla = manter pricionado
+// ASCII
 #define ARRIBA 72
 #define IZQUIERDA 75
 #define DERECHA 77
@@ -15,20 +18,21 @@
 #define tD 100
 #define tS 115
 
+
 #define ESC 27//Esta es la tecla de ESCAPE (ESC), la que se encuentra en la esquina izquierda superior de los teclados convencionales
 
 
 // Definimos las variables de forma globla, asi evitamos que las funciones devuelvan algun valor o definir la misma variable en cada funcion
 int cuerpo[300][2];
 int n = 1, tam = 4, dir = 3;
-int x = 10, y = 12;
-int xc = 30, yc = 15;
+int x = 10, y = 12;         // Coordenas de la cebeza
+int xc = 15, yc = 15;       // Coordenadas de la Comida
 int velocidad = 120;
 char tecla;
 
-void colocarCoordenada(int x, int y);
 void OcultaCursor();
 void pintar();
+void colocarCoordenada(int x, int y);
 void guardar_posicion_en_movimiento();
 void dibujar_cuerpo();
 void borrar_cuerpo();
@@ -40,7 +44,6 @@ using namespace std;
 
 int main()
 {
-
     OcultaCursor();
     srand(time(NULL));
     pintar();
@@ -72,12 +75,10 @@ int main()
     pintar();
     return 0;
 }
-
-void colocarCoordenada(int x, int y)
+void colocarCoordenada(int x, int y)// 5, 4/ 10,11
 {
-
     HANDLE cursoManual;
-    COORD posicionesCursor;
+    COORD posicionesCursor; // Vector
 
     posicionesCursor.X = x;
     posicionesCursor.Y = y;
@@ -97,6 +98,7 @@ void pintar()
 
         colocarCoordenada (i, 1);
         printf ("%c", 205);// ═══
+
         colocarCoordenada(i, 23);
         printf ("%c", 205);// ═══
     }
@@ -152,7 +154,7 @@ void borrar_cuerpo()
 }
 void teclear()
 {
-    if(kbhit())
+    if(kbhit()) // keyboard hit
     {
         tecla = getch();
         switch(tecla)
@@ -197,8 +199,8 @@ void colocarComida()
     if(x == xc && y == yc)
     {
         // Zonas donde si puede aparecer la comidas en el tablero
-        xc = (rand() % 55) + 4;
-        yc = (rand() % 15) + 4;
+        xc = (rand() % 55) + 4; // 827329323 %55 = 0 - 55
+        yc = (rand() % 15) + 4; // 00, 2, 3 4 a 19
 
         tam++;
         colocarCoordenada(xc, yc);
@@ -207,7 +209,7 @@ void colocarComida()
 }
 bool continuarJugando()
 {
-    if(y == 0 || y == 23 || x == 2 || x == 60)
+    if(y == 1 || y == 23 || x == 2 || x == 60)
         return false;
     for(int j = tam - 1; j > 0; j--)
     {

@@ -1,16 +1,10 @@
-#include <iostream>
-#include <conio.h>
-#include<time.h>
+#include <iostream> // Ya
+#include <conio.h> //  Teclado
+#include <time.h>
+
 #ifdef _WIN32
 #include<windows.h>
 #endif
-
-int serpiente[1000][2];
-int coordX = 30, coordY = 5;
-int coordComidaX = 30, coordComidaY = 10;
-int velocidadMovimiento = 100;
-int puntosGenerales = 0;
-int largoCuerpo = 1, anchoCuerpo = 4, direccionMovimiento = 4; // 1: Derecha, 2: Arriba, 3: Izquierda, 4: Abajo
 
 void limpiarPantalla();
 void coordenadaJuego(int coordX, int coordY);
@@ -22,10 +16,20 @@ bool finDelJuego();
 bool capturarTeclaPrecionada(int vkey);
 void dibujarBordes();
 
+int largoCuerpo = 1, anchoCuerpo = 4, direccionMovimiento = 3; // 3: Derecha, 2: Arriba, 1: Izquierda, 4: Abajo
+
+int coordComidaX = 30, coordComidaY = 10;
+int velocidadMovimiento = 100;
+int puntosGenerales = 0;
+int coordX = 30, coordY = 5;
+
+int serpiente[1000][2]; // 0x0x0x0x0x0x0x -- (x,y)
+
 using namespace std;
 
 int main()
 {
+
     srand(time(NULL));
     string asignarVelocidad = "n";
     cout<<"Controles: \na: Derecha \nw: Arriba \nd: Izquierda \ns: Abajo"<<endl;
@@ -41,8 +45,6 @@ int main()
     {
         velocidadMovimiento=100;
     }
-
-
     limpiarPantalla();
 
     CONSOLE_CURSOR_INFO codigoCurso = {100, FALSE};
@@ -50,7 +52,7 @@ int main()
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &codigoCurso);
 
     dibujarBordes();
-    coordComidaX = rand() % 55 + 5;
+    coordComidaX = rand() % 55 + 5; //  0 - 55
     coordComidaY = rand() % 15 + 5;
     coordenadaJuego(coordComidaX, coordComidaY);
     cout<<"F";
@@ -107,13 +109,11 @@ int main()
 
 void coordenadaJuego(int coordX, int coordY)
 {
-    HANDLE cursoManual;
-    COORD posicionesCursor;
-
+    COORD posicionesCursor; // (x, y)
     posicionesCursor.X = coordX;
     posicionesCursor.Y = coordY;
-    cursoManual = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleCursorPosition(cursoManual,posicionesCursor);
+
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),posicionesCursor);
 }
 
 void dibujarBordes()
@@ -131,14 +131,14 @@ void dibujarBordes()
     {
         for(int v=2; v <= 60; v++)
         {
-            if(v==2 || v==60)
+            if(v==2 || v==60) // or = o
             {
                 cout<<"|";
 
             }
             else
             {
-                if(v < 60 && i == 21 && v >0)
+                if(v < 60 && i == 21 && v >0 )// & (et)
                 {
                     cout<<"-";
                 }
@@ -153,8 +153,6 @@ void dibujarBordes()
         cout<<"  ";
 
     }
-
-
     coordenadaJuego (2,1);
     cout<<"*";
     coordenadaJuego (2,23);
@@ -186,31 +184,31 @@ void mostrarCuerpo()
 
 void ingresarMovimiento()
 {
-    if(kbhit())
+    if(kbhit()) // Keyboard hit
     {
-
-        if(capturarTeclaPrecionada(0x41)) //A
+// Bufert input // 23 77 79
+        if(capturarTeclaPrecionada(0x41)) //A - Izquierda
         {
-            if(direccionMovimiento != 3)
+            if(direccionMovimiento != 3) // Derecha  -> Izquierda
             {
                 direccionMovimiento = 1;
             }
         }
-        else if(capturarTeclaPrecionada(0x44)) //D
+        else if(capturarTeclaPrecionada(0x44)) //D - Derecha
         {
             if(direccionMovimiento != 1)
             {
                 direccionMovimiento = 3;
             }
         }
-        else if(capturarTeclaPrecionada(0x57)) //W
+        else if(capturarTeclaPrecionada(0x57)) //W - Arriba
         {
             if(direccionMovimiento != 4)
             {
                 direccionMovimiento = 2;
             }
         }
-        else if(capturarTeclaPrecionada(0x53)) //S
+        else if(capturarTeclaPrecionada(0x53)) //S - Abajo
         {
             if(direccionMovimiento != 2)
             {
@@ -227,7 +225,8 @@ void colocarComida()
 
         coordComidaX = rand() % 55 + 5;
         coordComidaY = rand() % 15 + 5;
-        puntosGenerales+=4;
+
+        puntosGenerales += 4;
         anchoCuerpo++;
         coordenadaJuego(coordComidaX, coordComidaY);
         cout<<"F";
@@ -245,6 +244,16 @@ bool verificarPosicionComida()
     }
 
 }
+
+bool capturarTeclaPrecionada(int vkey)
+{
+    // Preciona la tecla == -1.
+    // Se libera la tecla ==  1
+    // Mantener la tecla == 0
+
+    return GetKeyState(vkey) < 0;
+}
+
 bool finDelJuego()
 {
     if(coordY == 0 || coordY == 23 || coordX == 2 || coordX == 60)
@@ -266,7 +275,3 @@ void limpiarPantalla()
 #endif
 }
 
-bool capturarTeclaPrecionada(int vkey)
-{
-    return GetKeyState(vkey) < 0;
-}

@@ -5,16 +5,15 @@ using namespace std;
 
 class Rectangulo
 {
+public:
+    Rectangulo(float _base, float _altura);
+    ~Rectangulo();
+    void desplegarEnPantalla(char *letra);
+    void area();
+    void perimetro();
 
 private:
     float BASE, ALTURA;
-
-public:
-    Rectangulo(float, float);
-    void Desplegar(char *letra);
-    void area();
-    void perimetro();
-    ~Rectangulo();
 
 };
 Rectangulo::Rectangulo(float _base, float _altura )
@@ -22,7 +21,7 @@ Rectangulo::Rectangulo(float _base, float _altura )
     BASE = _base;
     ALTURA = _altura;
 }
-void Rectangulo::Desplegar(char *letra)
+void Rectangulo::desplegarEnPantalla(char *letra)
 {
     cout<<"El rectangulo es: "<<endl;
     int i = 0, j=0;
@@ -49,10 +48,8 @@ void Rectangulo::Desplegar(char *letra)
                 else
                 {
                     cout<<" ";
-
                 }
             }
-
         }
         cout<<endl;
     }
@@ -72,7 +69,7 @@ void Rectangulo::perimetro()
 
 Rectangulo::~Rectangulo()
 {
-    cout<<"Calculo hechos."<<endl;
+    cout<<"\n>>>>>>>Calculo hechos.<<<<<<<"<<endl;
 }
 
 int main()
@@ -103,9 +100,9 @@ int main()
     }
     while(baseRectangulo == alturaRectangulo);
     Rectangulo cir = Rectangulo(baseRectangulo, alturaRectangulo);
-    cout<<"Letra que se usara para formar la figura"<<endl;
+    cout<<"Ingrese la letra que se usara para formar la figura"<<endl;
     cin>>letra;
-    cir.Desplegar(&letra);
+    cir.desplegarEnPantalla(&letra);
     cir.area();
     cir.perimetro();
     return 0;
