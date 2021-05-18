@@ -1,49 +1,49 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h> // Apuntadores
 #include <iostream>
-#include<time.h>
-#include<stdlib.h>
+#include <time.h>
+#include <stdlib.h>
 
+// Variables contastes
 #define MAXDIMENSION 15
 #define MAXMINAS 20
 
 // Variables declaradas globalmente
-int dimensionTablero ;
-int MINAS ; // Numero de minas que habra en el tablero
+int dimensionTablero;
+int MINAS; // Numero de minas que habra en el tablero
 
 bool pasicionValida(int fila, int columna);
 bool pasicionValidaUnaVez(int fila, int columna);
-bool comprobarMina (int fila, int columna, char tablero[][MAXDIMENSION]);
+bool comprobarMina(int fila, int columna, char tablero[][MAXDIMENSION]);
 void realizarMovimiento(int *x, int *y);
 void dibujarTablero(char miTablero[][MAXDIMENSION]);
 void colocarMinas(int minas[][2], char tableroPrincipal[][MAXDIMENSION]);
 void inicializarTableroPrincipal(char tableroPrincipal[][MAXDIMENSION], char miTablero[][MAXDIMENSION]);
-void remplazarMina (int fila, int columna, char tablero[][MAXDIMENSION]);
-void iniciarJuego ();
+void remplazarMina(int fila, int columna, char tablero[][MAXDIMENSION]);
+void iniciarJuego();
 bool seguirJugando(char miTablero[][MAXDIMENSION], char tableroPrincipal[][MAXDIMENSION], int minas[][2], int fila, int columna, int *movFaltantes);
 int conteoMinasAdyacente(int fila, int columna, int minas[][2], char tableroPrincipal[][MAXDIMENSION]);
-
 
 using namespace std;
 
 int main()
 {
+
     srand(time(0));
+
     double porcentajetMinas = 12;
-    do
-    {
+    do{
+
         cout<<"Ingre la dimiension del tablero (min = 6, max = 15)"<<endl;
         cin>>dimensionTablero;
-    }
-    while(dimensionTablero>15 || dimensionTablero<6);
 
+    }while(dimensionTablero>15 || dimensionTablero<6);
 
-    porcentajetMinas  = 11+rand()%(10);
+    porcentajetMinas  = 11 + rand() % (10);
     MINAS = porcentajetMinas;
-    iniciarJuego ();
+   iniciarJuego ();
 
     return (0);
 }
-
 
 // Verificamos la ubicacion seleccionada
 bool pasicionValida(int fila, int columna)
@@ -56,8 +56,7 @@ bool pasicionValida(int fila, int columna)
 
 bool pasicionValidaUnaVez(int fila, int columna)
 {
-    return (fila >= 0) && (fila < dimensionTablero) &&
-           (columna >= 0) && (columna < dimensionTablero);
+    return (fila >= 0) && (fila < dimensionTablero) && (columna >= 0) && (columna < dimensionTablero);
 
 }
 
@@ -298,17 +297,19 @@ bool seguirJugando(char miTablero[][MAXDIMENSION], char tableroPrincipal[][MAXDI
 
 void colocarMinas(int minas[][2], char tableroPrincipal[][MAXDIMENSION])
 {
-    bool marcas[MAXDIMENSION*MAXDIMENSION];
-
+    bool marcas[MAXDIMENSION*MAXDIMENSION]; // 6 = 36 (6 x 6)
+// Documentacion oficial
     memset (marcas, false, sizeof (marcas));
     for (int i=0; i<MINAS; )
     {
-        int random = rand() % (dimensionTablero*dimensionTablero);
+        // i = 0
+        // i = 1
+        int random = rand() % (dimensionTablero*dimensionTablero); // 1500 % 36 = 0 - 36
         int x = random / dimensionTablero;
         int y = random % dimensionTablero;
 
 
-        if (marcas[random] == false)
+        if (marcas[random] == false) // marcas[3]== false, marcas[3]== true
         {
             minas[i][0]= x;
             minas[i][1] = y;
@@ -318,6 +319,7 @@ void colocarMinas(int minas[][2], char tableroPrincipal[][MAXDIMENSION])
             marcas[random] = true;
             i++;
         }
+
     }
 
 
@@ -333,7 +335,7 @@ void inicializarTableroPrincipal(char tableroPrincipal[][MAXDIMENSION], char miT
     {
         for (int j=0; j<dimensionTablero; j++)
         {
-            miTablero[i][j] = tableroPrincipal[i][j] = '-';
+            miTablero[i][j] = tableroPrincipal[i][j] = '-'; //
         }
     }
 
@@ -368,7 +370,7 @@ void iniciarJuego ()
     // La contruccion del tablero inicial (tableroPrincipal) el cual no cambia en el todo el juego
     // Y el tablero que mirara el jugador (miTablero) el cual cabia con cada jugada correcta
     char tableroPrincipal[MAXDIMENSION][MAXDIMENSION], miTablero[MAXDIMENSION][MAXDIMENSION];
-
+                        // Dimencion del tablero         //Cantidad de minas
     int movFaltantes = dimensionTablero * dimensionTablero - MINAS, x, y;
     int minas[MAXMINAS][2]; // Almacena las corredenas de las minas. (sin colocarlas en el tablero)
 
@@ -384,12 +386,11 @@ void iniciarJuego ()
 
         cout<<"<--------------------------------> \n";
         dibujarTablero (miTablero);
-        realizarMovimiento (&x, &y);
+        realizarMovimiento (&x, &y); // Accedemos al  espacio en memoria
 
         // Esto garantiza que el primer movimiento siempre sea libre de mina
         if (currentMoveIndex == 0)
         {
-
             // En el primer movimiento evitamos que el juegador toque una mina, para que tenga oportunidad de jugar al menos 2 turnos
             if (comprobarMina (x, y, tableroPrincipal) == true)
                 remplazarMina (x, y, tableroPrincipal);
@@ -411,3 +412,5 @@ void iniciarJuego ()
     }
 
 }
+
+
